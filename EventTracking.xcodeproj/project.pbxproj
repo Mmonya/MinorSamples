@@ -17,6 +17,7 @@
 		09D384F7204442BA00A4CF07 /* EventTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D384F6204442BA00A4CF07 /* EventTrackingTests.swift */; };
 		09D38502204442BA00A4CF07 /* EventTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D38501204442BA00A4CF07 /* EventTrackingUITests.swift */; };
 		09D3851020444B3B00A4CF07 /* MonthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */; };
+		09D385122044582200A4CF07 /* DaysDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D385112044582200A4CF07 /* DaysDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		09D38501204442BA00A4CF07 /* EventTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackingUITests.swift; sourceTree = "<group>"; };
 		09D38503204442BA00A4CF07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewController.swift; sourceTree = "<group>"; };
+		09D385112044582200A4CF07 /* DaysDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				09D384DC204442B900A4CF07 /* AppDelegate.swift */,
-				09D384E1204442B900A4CF07 /* MasterViewController.swift */,
-				09D384E3204442B900A4CF07 /* DetailViewController.swift */,
-				09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */,
+				09D38514204459AC00A4CF07 /* ViewControllers */,
+				09D38513204459A100A4CF07 /* Models */,
 				09D384E5204442B900A4CF07 /* Main.storyboard */,
 				09D384E8204442B900A4CF07 /* Assets.xcassets */,
 				09D384EA204442B900A4CF07 /* LaunchScreen.storyboard */,
@@ -132,6 +133,24 @@
 				09D38503204442BA00A4CF07 /* Info.plist */,
 			);
 			path = EventTrackingUITests;
+			sourceTree = "<group>";
+		};
+		09D38513204459A100A4CF07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				09D385112044582200A4CF07 /* DaysDataProvider.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		09D38514204459AC00A4CF07 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				09D384E1204442B900A4CF07 /* MasterViewController.swift */,
+				09D384E3204442B900A4CF07 /* DetailViewController.swift */,
+				09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09D384DD204442B900A4CF07 /* AppDelegate.swift in Sources */,
+				09D385122044582200A4CF07 /* DaysDataProvider.swift in Sources */,
 				09D384E0204442B900A4CF07 /* EventTracking.xcdatamodeld in Sources */,
 				09D384E2204442B900A4CF07 /* MasterViewController.swift in Sources */,
 				09D384E4204442B900A4CF07 /* DetailViewController.swift in Sources */,
