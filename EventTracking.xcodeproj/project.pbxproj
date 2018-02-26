@@ -18,6 +18,7 @@
 		09D38502204442BA00A4CF07 /* EventTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D38501204442BA00A4CF07 /* EventTrackingUITests.swift */; };
 		09D3851020444B3B00A4CF07 /* MonthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */; };
 		09D385122044582200A4CF07 /* DaysDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D385112044582200A4CF07 /* DaysDataProvider.swift */; };
+		09D385162044677500A4CF07 /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D385152044677500A4CF07 /* DayCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		09D38503204442BA00A4CF07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewController.swift; sourceTree = "<group>"; };
 		09D385112044582200A4CF07 /* DaysDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysDataProvider.swift; sourceTree = "<group>"; };
+		09D385152044677500A4CF07 /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				09D384DC204442B900A4CF07 /* AppDelegate.swift */,
+				09D385172044677B00A4CF07 /* ViewCells */,
 				09D38514204459AC00A4CF07 /* ViewControllers */,
 				09D38513204459A100A4CF07 /* Models */,
 				09D384E5204442B900A4CF07 /* Main.storyboard */,
@@ -151,6 +154,14 @@
 				09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		09D385172044677B00A4CF07 /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				09D385152044677500A4CF07 /* DayCollectionViewCell.swift */,
+			);
+			name = ViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +302,7 @@
 				09D385122044582200A4CF07 /* DaysDataProvider.swift in Sources */,
 				09D384E0204442B900A4CF07 /* EventTracking.xcdatamodeld in Sources */,
 				09D384E2204442B900A4CF07 /* MasterViewController.swift in Sources */,
+				09D385162044677500A4CF07 /* DayCollectionViewCell.swift in Sources */,
 				09D384E4204442B900A4CF07 /* DetailViewController.swift in Sources */,
 				09D3851020444B3B00A4CF07 /* MonthCollectionViewController.swift in Sources */,
 			);

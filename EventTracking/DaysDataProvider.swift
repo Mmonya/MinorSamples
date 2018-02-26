@@ -8,6 +8,20 @@
 
 import Foundation
 
-class DaysDataProvider {
+class DaysDataProvider : NSObject, MonthCollectionViewControllerDataSource {
+
+	//  Constants
+	private let kDaysPerWeek = 7
+	private let kNumberOfVisibleWeeks = 6
+
+	// MARK: - MonthCollectionViewControllerDataSource methods
+
+	func numberOfVisibleWeeks() -> Int {
+		return kNumberOfVisibleWeeks
+	}
 	
+	func numberOfDaysInWeek(_ week: Int) -> Int {
+		return kDaysPerWeek
+	}
+
 }
