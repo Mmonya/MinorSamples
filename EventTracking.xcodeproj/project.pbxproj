@@ -16,6 +16,7 @@
 		09D384EC204442B900A4CF07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D384EA204442B900A4CF07 /* LaunchScreen.storyboard */; };
 		09D384F7204442BA00A4CF07 /* EventTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D384F6204442BA00A4CF07 /* EventTrackingTests.swift */; };
 		09D38502204442BA00A4CF07 /* EventTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D38501204442BA00A4CF07 /* EventTrackingUITests.swift */; };
+		09D3851020444B3B00A4CF07 /* MonthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		09D384FD204442BA00A4CF07 /* EventTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D38501204442BA00A4CF07 /* EventTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackingUITests.swift; sourceTree = "<group>"; };
 		09D38503204442BA00A4CF07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				09D384DC204442B900A4CF07 /* AppDelegate.swift */,
 				09D384E1204442B900A4CF07 /* MasterViewController.swift */,
 				09D384E3204442B900A4CF07 /* DetailViewController.swift */,
+				09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */,
 				09D384E5204442B900A4CF07 /* Main.storyboard */,
 				09D384E8204442B900A4CF07 /* Assets.xcassets */,
 				09D384EA204442B900A4CF07 /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 				09D384E0204442B900A4CF07 /* EventTracking.xcdatamodeld in Sources */,
 				09D384E2204442B900A4CF07 /* MasterViewController.swift in Sources */,
 				09D384E4204442B900A4CF07 /* DetailViewController.swift in Sources */,
+				09D3851020444B3B00A4CF07 /* MonthCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +519,7 @@
 				09D38508204442BA00A4CF07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09D38509204442BA00A4CF07 /* Build configuration list for PBXNativeTarget "EventTrackingTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +528,7 @@
 				09D3850B204442BA00A4CF07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09D3850C204442BA00A4CF07 /* Build configuration list for PBXNativeTarget "EventTrackingUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +537,7 @@
 				09D3850E204442BA00A4CF07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
