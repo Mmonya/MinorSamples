@@ -10,7 +10,8 @@ import Foundation
 
 // Constants
 private let kDaysPerWeek = 7
-private let kExpectedNumberOfItems = kDaysPerWeek * 7 // 6 - rows with numbers + 1 - with titles
+private let kNumberOfVisibleWeeks = 7 // 6 - rows with numbers + 1 - with titles
+private let kExpectedNumberOfItems = kDaysPerWeek * kNumberOfVisibleWeeks
 
 class DaysDataProvider : NSObject, MonthCollectionViewControllerDataSource {
 
@@ -30,7 +31,7 @@ class DaysDataProvider : NSObject, MonthCollectionViewControllerDataSource {
 		let calendar = Calendar.current
 		
 		// Making "monday" as the first day of a week
-		var weekTitles = calendar.shortWeekdaySymbols
+		var weekTitles = calendar.veryShortWeekdaySymbols
 		let title = weekTitles.remove(at:0)
 		weekTitles.append(title)
 		
@@ -98,18 +99,30 @@ class DaysDataProvider : NSObject, MonthCollectionViewControllerDataSource {
 		}
 	}
 	
+	func indexFromIndexPath(_ indexPath: IndexPath) -> Int {
+		return indexPath.section * kDaysPerWeek + indexPath.row
+	}
+	
 	// MARK: - MonthCollectionViewControllerDataSource methods
 
 	func numberOfVisibleWeeks() -> Int {
-		return dayValues.count / kDaysPerWeek
+		return kNumberOfVisibleWeeks
 	}
 	
 	func numberOfDaysInWeek(_ week: Int) -> Int {
 		return kDaysPerWeek
 	}
 	
-	func dayAt(_ indexPath: IndexPath) -> Day {
-		return dayValues[indexPath.section * kDaysPerWeek + indexPath.row]
+	func dayAt(_ indexPath: IndexPath) -> Day? {
+		let index = indexFromIndexPath(indexPath)
+		return kExpectedNumberOfItems > index ? dayValues[index] : nil
 	}
 
+	func shouldSelectItemAt(_ indexPath: IndexPath) -> Bool
+	{
+		let index = indexFromIndexPath(indexPath)
+		let day = dayValues[index]
+		return day.dayType == .weekend || day.dayType == .workday
+	}
+	
 }
