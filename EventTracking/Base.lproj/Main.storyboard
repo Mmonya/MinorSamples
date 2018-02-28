@@ -46,9 +46,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7YD-Pd-WmG">
-                                <rect key="frame" x="20" y="72" width="374" height="300"/>
+                                <rect key="frame" x="20" y="72" width="374" height="350"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="250" constant="300" id="rvG-ov-KJ1"/>
+                                    <constraint firstAttribute="height" priority="200" constant="350" id="rvG-ov-KJ1"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="gb2-sm-Weh" kind="embed" identifier="MonthPreview" id="LnT-iA-0oD"/>
@@ -80,8 +80,8 @@
         <scene sceneID="7ra-Ba-lpX">
             <objects>
                 <collectionViewController id="gb2-sm-Weh" customClass="MonthCollectionViewController" customModule="EventTracking" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hJJ-8X-REk">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="300"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="hJJ-8X-REk">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N6M-An-Edx">
@@ -112,6 +112,9 @@
                                     <constraint firstItem="hy4-b8-h5Y" firstAttribute="leading" secondItem="H9a-sN-mn4" secondAttribute="leading" id="yqB-kc-8yj"/>
                                     <constraint firstItem="hy4-b8-h5Y" firstAttribute="centerY" secondItem="H9a-sN-mn4" secondAttribute="centerY" id="zDv-vm-eIV"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="titleLabel" destination="hy4-b8-h5Y" id="72w-Qx-FEy"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -155,7 +158,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="15" y="0.0" width="384" height="43"/>
+                                            <rect key="frame" x="20" y="0.0" width="379" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

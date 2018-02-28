@@ -8,28 +8,41 @@
 
 import UIKit
 
-enum DayType {
-	case weekTitle
-	case anotherMonth
-	case weekend
-	case workday
-}
-
 protocol MonthCollectionViewControllerDataSource : AnyObject {
 
 	func numberOfVisibleWeeks() -> Int
 	func numberOfDaysInWeek(_ week: Int) -> Int
-
+	func dayAt(_ indexPath: IndexPath) -> Day
+	
 }
+
+// Constants
+private let kWorkingDayCellKey = "WorkingDayViewCell"
 
 class MonthCollectionViewController : UICollectionViewController {
 	
-	//  Constants
-	private let kWorkingDayCellKey = "WorkingDayViewCell"
-
 	// MARK: - Properties
 
 	weak var dataSource : MonthCollectionViewControllerDataSource!
+	var cellColors : [UIColor] = []
+	
+	// MARK: - Internal methods
+
+	override func viewDidLoad() {
+		cellColors.append(UIColor.init(white: 0.8, alpha: 1.0))
+		cellColors.append(UIColor.init(white: 0.8, alpha: 1.0))
+		cellColors.append(UIColor.init(white: 0.4, alpha: 1.0))
+		cellColors.append(UIColor.init(white: 0, alpha: 1.0))
+	}
+	
+	func cellColorForDayType(_ dayType: DayType) -> UIColor {
+		var index = 0
+		switch dayType {
+			case .weekTitle, .anotherMonth, .weekend, .workday:
+				index = dayType.rawValue
+		}
+		return cellColors[index]
+	}
 	
 	// MARK: - Collection View methods
 
@@ -42,7 +55,11 @@ class MonthCollectionViewController : UICollectionViewController {
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		return collectionView.dequeueReusableCell(withReuseIdentifier: kWorkingDayCellKey, for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kWorkingDayCellKey, for: indexPath) as! DayCollectionViewCell
+		let day = dataSource.dayAt(indexPath)
+		cell.titleLabel.textColor = cellColorForDayType(day.dayType)
+		cell.titleLabel.text = day.title
+		return cell
 	}
 	
 	

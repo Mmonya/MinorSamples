@@ -10,4 +10,6 @@ import UIKit
 
 class DayCollectionViewCell: UICollectionViewCell {
 	
+	@IBOutlet weak var titleLabel: UILabel!
+	
 }
