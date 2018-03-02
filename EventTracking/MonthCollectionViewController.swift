@@ -13,7 +13,7 @@ protocol MonthCollectionViewControllerDataSource : AnyObject {
 	func numberOfVisibleWeeks() -> Int
 	func numberOfDaysInWeek(_ week: Int) -> Int
 	func dayAt(_ indexPath: IndexPath) -> Day?
-	func shouldSelectItemAt(_ indexPath: IndexPath) -> Bool
+	func shouldSelectDayAt(_ indexPath: IndexPath) -> Bool
 	
 }
 
@@ -73,7 +73,7 @@ class MonthCollectionViewController : UICollectionViewController {
 	}
 
 	override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-		let result = dataSource.shouldSelectItemAt(indexPath)
+		let result = dataSource.shouldSelectDayAt(indexPath)
 		print("shouldHighlightItemAt (\(result)) = \(indexPath)")
 		return result
 	}
@@ -89,13 +89,14 @@ class MonthCollectionViewController : UICollectionViewController {
 	var shouldDeselect = false
 	
 	override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-		let result = dataSource.shouldSelectItemAt(indexPath)
+		let result = dataSource.shouldSelectDayAt(indexPath)
 		print("shouldSelectItemAt (\(result)) = \(indexPath)")
 		shouldDeselect = result
 		return result
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		shouldDeselect = false
 		print("didSelectItemAt = \(indexPath)")
 		print("-----------------------------------------")
 		

@@ -12,7 +12,7 @@ class DetailViewController: UIViewController {
 
 	@IBOutlet weak var detailDescriptionLabel: UILabel!
 
-	var daysDataProvider = DaysDataProvider.init(date: Date())
+	var dataProvider = DataProvider.init(date: Date())
 
 	func configureView() {
 		// Update the user interface for the detail item.
@@ -44,10 +44,15 @@ class DetailViewController: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "MonthPreview" {
 			let controller = segue.destination as! MonthCollectionViewController
-			controller.dataSource = daysDataProvider
-			daysDataProvider.reloadData()
+			controller.dataSource = dataProvider
+			dataProvider.reloadData()
+		}
+		if segue.identifier == "MonthList" {
+			let controller = segue.destination as! MonthsListViewController
+			controller.delegate = dataProvider
+			controller.dataSource = dataProvider
 		}
 	}
-
+	
 }
 

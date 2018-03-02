@@ -13,7 +13,7 @@ private let kDaysPerWeek = 7
 private let kNumberOfVisibleWeeks = 7 // 6 - rows with numbers + 1 - with titles
 private let kExpectedNumberOfItems = kDaysPerWeek * kNumberOfVisibleWeeks
 
-class DaysDataProvider : NSObject, MonthCollectionViewControllerDataSource {
+class DataProvider : NSObject, MonthCollectionViewControllerDataSource, MonthsListViewControllerDelegate, MonthsListViewControllerDataSource {
 
 	private var currentDate : Date
 	private var dayValues = [Day]()
@@ -118,11 +118,23 @@ class DaysDataProvider : NSObject, MonthCollectionViewControllerDataSource {
 		return kExpectedNumberOfItems > index ? dayValues[index] : nil
 	}
 
-	func shouldSelectItemAt(_ indexPath: IndexPath) -> Bool
+	func shouldSelectDayAt(_ indexPath: IndexPath) -> Bool
 	{
 		let index = indexFromIndexPath(indexPath)
 		let day = dayValues[index]
 		return day.dayType == .weekend || day.dayType == .workday
+	}
+
+	// MARK: - MonthsListViewControllerDataSource methods
+
+	func selectedMonth() -> Int {
+		return 0
+	}
+	
+	// MARK: - MonthsListViewControllerDelegate methods
+	
+	func monthDidSelectedAt(_ indexPath: IndexPath) {
+		print(indexPath)
 	}
 	
 }
