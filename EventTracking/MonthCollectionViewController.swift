@@ -48,6 +48,7 @@ class MonthCollectionViewController : UICollectionViewController {
 	}
 	
 	override func viewDidLoad() {
+		super.viewDidLoad()
 		cellColors.append(UIColor.init(white: 0.8, alpha: 1.0))
 		cellColors.append(UIColor.init(white: 0.9, alpha: 1.0))
 		cellColors.append(UIColor.init(white: 0.45, alpha: 1.0))
@@ -55,6 +56,7 @@ class MonthCollectionViewController : UICollectionViewController {
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		updateSelectedItem()
 	}
 	

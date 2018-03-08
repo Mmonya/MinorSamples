@@ -22,6 +22,7 @@ class MonthsListViewController : UITableViewController {
 	weak var dataSource : MonthsListViewControllerDataSource?
 	
 	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		updateSelectedItem()
 	}
 	

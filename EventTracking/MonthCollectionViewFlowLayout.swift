@@ -11,7 +11,7 @@ import UIKit
 class MonthCollectionViewFlowLayout: UICollectionViewFlowLayout {
 	
 	private var contentOffset = CGPoint()
-	private var contentSize = CGSize()
+	private var calculatedContentSize = CGSize()
 	
 	func applyPosition(to layoutAttributes: UICollectionViewLayoutAttributes) {
 		var frame = CGRect(origin: CGPoint(), size: layoutAttributes.size)
@@ -36,23 +36,22 @@ class MonthCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		contentSize.height = itemSize.height * CGFloat(collectionView.numberOfSections)
 		contentSize.width = itemSize.width * CGFloat(collectionView.numberOfItems(inSection: 0))
 
-		self.contentSize = contentSize
+		self.calculatedContentSize = contentSize
 		
 		let collectionViewContentSize = self.collectionViewContentSize
-		
-		if contentSize.width <= collectionViewContentSize.width {
+		if contentSize.width < collectionViewContentSize.width {
 			contentOffset.x = (collectionViewContentSize.width - contentSize.width) / 2
 		}
 		
-		if contentSize.height <= collectionViewContentSize.height {
+		if contentSize.height < collectionViewContentSize.height {
 			contentOffset.y = (collectionViewContentSize.height - contentSize.height) / 2
 		}
+		
 	}
 	
 	override var collectionViewContentSize: CGSize {
 		var collectionViewContentSize = collectionView?.frame.size ?? CGSize()
-		let contentSize = self.contentSize
-		
+		let contentSize = self.calculatedContentSize
 		collectionViewContentSize.height = max(contentSize.height,
 					collectionViewContentSize.height)
 		collectionViewContentSize.width = max(contentSize.width,
@@ -80,7 +79,7 @@ class MonthCollectionViewFlowLayout: UICollectionViewFlowLayout {
 	}
 	
 	override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-		guard let attributes = super.layoutAttributesForItem(at: indexPath) else {
+		guard let attributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
 			return nil
 		}
 		applyPosition(to: attributes)

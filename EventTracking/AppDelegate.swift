@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 		let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
 		let controller = masterNavigationController.topViewController as! MasterViewController
-		controller.managedObjectContext = self.persistentContainer.viewContext
+//		controller.managedObjectContext = self.persistentContainer.viewContext
+		
+		
 		return true
 	}
 
@@ -49,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 		// Saves changes in the application's managed object context before the application terminates.
-		self.saveContext()
+		
+//		self.saveContext()
 	}
 
 	// MARK: - Split view
@@ -63,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 	    }
 	    return false
 	}
+	/*
 	// MARK: - Core Data stack
 
 	lazy var persistentContainer: NSPersistentContainer = {
@@ -107,6 +111,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 	        }
 	    }
 	}
-
+	*/
 }
 
