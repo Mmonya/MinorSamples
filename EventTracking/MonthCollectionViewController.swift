@@ -14,6 +14,13 @@ protocol MonthCollectionViewControllerDataSource : AnyObject {
 	func numberOfDaysInWeek(_ week: Int) -> Int
 	func dayAt(_ indexPath: IndexPath) -> Day?
 	func shouldSelectDayAt(_ indexPath: IndexPath) -> Bool
+	func selectedDayIndexPath() -> IndexPath
+	
+}
+
+protocol MonthCollectionViewControllerDelegate : AnyObject {
+	
+	func monthCollectionDidSelectDayAt(_ indexPath: IndexPath)
 	
 }
 
@@ -24,11 +31,22 @@ class MonthCollectionViewController : UICollectionViewController {
 	
 	// MARK: - Properties
 
-	weak var dataSource : MonthCollectionViewControllerDataSource!
+	weak var dataSource : MonthCollectionViewControllerDataSource! {
+		didSet {
+			NotificationCenter.default.addObserver(self, selector:
+						#selector(monthDidChangeValue), name:
+						kMonthDidChangeNotificationName, object: dataSource)
+		}
+	}
+	weak var delegate : MonthCollectionViewControllerDelegate?
 	var cellColors : [UIColor] = []
 	
 	// MARK: - Internal methods
-
+	deinit {
+		NotificationCenter.default.removeObserver(self,
+					name: kMonthDidChangeNotificationName, object: dataSource)
+	}
+	
 	override func viewDidLoad() {
 		cellColors.append(UIColor.init(white: 0.8, alpha: 1.0))
 		cellColors.append(UIColor.init(white: 0.9, alpha: 1.0))
@@ -37,7 +55,7 @@ class MonthCollectionViewController : UICollectionViewController {
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-
+		updateSelectedItem()
 	}
 	
 	func cellColorForDayType(_ dayType: DayType) -> UIColor {
@@ -52,6 +70,24 @@ class MonthCollectionViewController : UICollectionViewController {
 	func setup(viewCell: DayCollectionViewCell, forDay day: Day) {
 		viewCell.titleLabel.textColor = cellColorForDayType(day.dayType)
 		viewCell.titleLabel.text = day.title
+	}
+	
+	func updateSelectedItem() {
+		for indexPath in collectionView?.indexPathsForSelectedItems ?? [] {
+			collectionView?.deselectItem(at: indexPath, animated: false)
+		}
+		collectionView?.selectItem(at: dataSource?.selectedDayIndexPath(),
+					animated: false, scrollPosition:UICollectionViewScrollPosition())
+	}
+	
+	func monthDidChangeValue(_ notification: Notification) {
+		
+		
+//		print(notification)
+		
+		collectionView?.reloadData()
+		shouldDeselectItem = false
+		updateSelectedItem()
 	}
 	
 	// MARK: - Collection View methods
@@ -86,24 +122,24 @@ class MonthCollectionViewController : UICollectionViewController {
 		print("didUnhighlightItemAt = \(indexPath)")
 	}
 	
-	var shouldDeselect = false
+	private var shouldDeselectItem = false
 	
 	override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
 		let result = dataSource.shouldSelectDayAt(indexPath)
 		print("shouldSelectItemAt (\(result)) = \(indexPath)")
-		shouldDeselect = result
+		shouldDeselectItem = result
 		return result
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		shouldDeselect = false
+		shouldDeselectItem = false
 		print("didSelectItemAt = \(indexPath)")
 		print("-----------------------------------------")
 		
 		
 		// Send information
 		
-		
+		delegate?.monthCollectionDidSelectDayAt(indexPath)
 		
 	}
 	
@@ -114,10 +150,9 @@ class MonthCollectionViewController : UICollectionViewController {
 	
 	override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
 		print("didDeselectItemAt = \(indexPath)")
-		if !shouldDeselect {
-			collectionView.selectItem(at: indexPath, animated: false, scrollPosition:
-				UICollectionViewScrollPosition())
+		if !shouldDeselectItem {
+			updateSelectedItem()
 		}
-		shouldDeselect = false
+		shouldDeselectItem = false
 	}
 }

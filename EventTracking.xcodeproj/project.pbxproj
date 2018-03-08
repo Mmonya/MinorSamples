@@ -44,7 +44,7 @@
 /* Begin PBXFileReference section */
 		091DA3072047F891000013F3 /* MonthCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		09684E7F2046C17B00D2C6EF /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
-		098CA33220494B4C00E5D3F1 /* MonthsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthsListViewController.swift; sourceTree = "<group>"; };
+		098CA33220494B4C00E5D3F1 /* MonthsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MonthsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		09D384D9204442B900A4CF07 /* EventTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D384DC204442B900A4CF07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09D384DF204442B900A4CF07 /* EventTracking.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventTracking.xcdatamodel; sourceTree = "<group>"; };

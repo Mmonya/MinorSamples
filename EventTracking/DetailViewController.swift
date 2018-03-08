@@ -45,6 +45,7 @@ class DetailViewController: UIViewController {
 		if segue.identifier == "MonthPreview" {
 			let controller = segue.destination as! MonthCollectionViewController
 			controller.dataSource = dataProvider
+			controller.delegate = dataProvider
 			dataProvider.reloadData()
 		}
 		if segue.identifier == "MonthList" {

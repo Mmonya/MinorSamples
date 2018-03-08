@@ -8,15 +8,22 @@
 
 import Foundation
 
-// Constants
+// Global constants
+let kMonthDidChangeNotificationName = Notification.Name(rawValue: "kMonthDidChangeNotificationName")
+let kOldDateUserInfoKey = "kOldDateUserInfoKey"
+
+// Private constants
 private let kDaysPerWeek = 7
 private let kNumberOfVisibleWeeks = 7 // 6 - rows with numbers + 1 - with titles
 private let kExpectedNumberOfItems = kDaysPerWeek * kNumberOfVisibleWeeks
 
-class DataProvider : NSObject, MonthCollectionViewControllerDataSource, MonthsListViewControllerDelegate, MonthsListViewControllerDataSource {
+class DataProvider : NSObject, MonthCollectionViewControllerDataSource,
+			MonthCollectionViewControllerDelegate,
+			MonthsListViewControllerDataSource, MonthsListViewControllerDelegate {
 
 	private var currentDate : Date
 	private var dayValues = [Day]()
+	private var selectedDayIndex = -1
 	
 	// MARK: - Properties
 	init(date currentDate: Date) {
@@ -40,7 +47,7 @@ class DataProvider : NSObject, MonthCollectionViewControllerDataSource, MonthsLi
 			dayValues.append(day)
 		}
 		
-		// Adding days from previous month to fill first row
+		// Adding days from the previous month to fill first row
 		var dateComponent = calendar.dateComponents(
 					[.year, .month, .day, .hour], from: currentDate)
 		dateComponent.day = 1
@@ -63,19 +70,24 @@ class DataProvider : NSObject, MonthCollectionViewControllerDataSource, MonthsLi
 			}
 		}
 
-		// Adding days from current month
+		// Adding days from the current month
 		dateComponent = calendar.dateComponents(
 					[.year, .month, .day, .hour], from: currentDate)
+		let currentDayValue = dateComponent.day!
 		for dayValue in CountableRange(calendar.range(of: .day, in: .month, for: currentDate)!) {
 			dateComponent.day = dayValue
 			if let iterationDate = calendar.date(from: dateComponent) {
 				let weekdayIndex = calendar.component(.weekday, from: iterationDate)
 				let day = Day(dayType: Day.dayTypeForWeekdayIndex(weekdayIndex), title: String(dayValue))
+				day.value = dayValue
 				dayValues.append(day)
+				if dayValue == currentDayValue {
+					selectedDayIndex = dayValues.count - 1
+				}
 			}
 		}
 		
-		// Adding days from next month to last items
+		// Adding days from the next month to fill last items
 		dateComponent = calendar.dateComponents(
 					[.year, .month, .day, .hour], from: currentDate)
 		dateComponent.day = calendar.range(of: .day, in: .month, for: currentDate)?.count
@@ -103,6 +115,10 @@ class DataProvider : NSObject, MonthCollectionViewControllerDataSource, MonthsLi
 		return indexPath.section * kDaysPerWeek + indexPath.row
 	}
 	
+	func indexPathFromIndex(_ index: Int) -> IndexPath {
+		return IndexPath(row: index % kDaysPerWeek, section: index / kDaysPerWeek)
+	}
+	
 	// MARK: - MonthCollectionViewControllerDataSource methods
 
 	func numberOfVisibleWeeks() -> Int {
@@ -124,17 +140,54 @@ class DataProvider : NSObject, MonthCollectionViewControllerDataSource, MonthsLi
 		let day = dayValues[index]
 		return day.dayType == .weekend || day.dayType == .workday
 	}
+	
+	func selectedDayIndexPath() -> IndexPath {
+		return indexPathFromIndex(selectedDayIndex)
+	}
+
+	// MARK: - MonthCollectionViewControllerDataSource methods
+	
+	func monthCollectionDidSelectDayAt(_ indexPath: IndexPath) {
+		if let dayValue = dayAt(indexPath)?.value {
+			let calendar = Calendar.current
+			var dateComponent = calendar.dateComponents(
+						[.year, .month, .day, .hour], from: currentDate)
+			dateComponent.day = dayValue
+			if let newDate = calendar.date(from: dateComponent) {
+				currentDate = newDate
+				selectedDayIndex = indexFromIndexPath(indexPath)
+			}
+		}
+	}
 
 	// MARK: - MonthsListViewControllerDataSource methods
 
-	func selectedMonth() -> Int {
-		return 0
+	func selectedMonthIndex() -> Int {
+		let calendar = Calendar.current
+		let dateComponent = calendar.dateComponents(
+					[.year, .month, .day, .hour], from: currentDate)
+		return dateComponent.month != nil ? dateComponent.month! - 1 : 0
 	}
 	
 	// MARK: - MonthsListViewControllerDelegate methods
 	
-	func monthDidSelectedAt(_ indexPath: IndexPath) {
-		print(indexPath)
+	func monthsListDidSelectMonthAt(_ indexPath: IndexPath) {
+		let calendar = Calendar.current
+		var dateComponent = calendar.dateComponents(
+			[.year, .month, .day, .hour], from: currentDate)
+		if let currentMonth = dateComponent.month {
+			if currentMonth != indexPath.row + 1 {
+				dateComponent = DateComponents()
+				dateComponent.month = indexPath.row + 1 - currentMonth
+				if let newDate = calendar.date(byAdding: dateComponent, to: currentDate) {
+					let oldDate = currentDate
+					currentDate = newDate
+					
+					reloadData()
+					NotificationCenter.default.post(name: kMonthDidChangeNotificationName, object: self, userInfo: [kOldDateUserInfoKey: oldDate])
+				}
+			}
+		}
 	}
 	
 }

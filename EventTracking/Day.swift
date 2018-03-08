@@ -19,6 +19,7 @@ class Day {
 	
 	let dayType : DayType
 	let title : String
+	var value : Int?
 	
 	init(dayType : DayType, title : String) {
 		self.dayType = dayType

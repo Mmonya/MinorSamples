@@ -9,29 +9,29 @@
 import UIKit
 
 protocol MonthsListViewControllerDataSource : AnyObject {
-	func selectedMonth() -> Int
+	func selectedMonthIndex() -> Int
 }
 
 protocol MonthsListViewControllerDelegate : AnyObject {
-	func monthDidSelectedAt(_ indexPath: IndexPath)
+	func monthsListDidSelectMonthAt(_ indexPath: IndexPath)
 }
 
 class MonthsListViewController : UITableViewController {
 	
-	var delegate : MonthsListViewControllerDelegate?
-	var dataSource : MonthsListViewControllerDataSource?
+	weak var delegate : MonthsListViewControllerDelegate?
+	weak var dataSource : MonthsListViewControllerDataSource?
 	
 	override func viewDidAppear(_ animated: Bool) {
 		updateSelectedItem()
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		delegate?.monthDidSelectedAt(indexPath)
+		delegate?.monthsListDidSelectMonthAt(indexPath)
 	}
 	
 	func updateSelectedItem() {
-		if let selectedMonth = dataSource?.selectedMonth() {
-			let indexPath = IndexPath(row: selectedMonth, section: 0)
+		if let selectedMonthIndex = dataSource?.selectedMonthIndex() {
+			let indexPath = IndexPath(row: selectedMonthIndex, section: 0)
 			tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition(rawValue: 0)!)
 		}
 	}
