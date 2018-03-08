@@ -17,7 +17,7 @@ private let kDaysPerWeek = 7
 private let kNumberOfVisibleWeeks = 7 // 6 - rows with numbers + 1 - with titles
 private let kExpectedNumberOfItems = kDaysPerWeek * kNumberOfVisibleWeeks
 
-class DataProvider : NSObject, MonthCollectionViewControllerDataSource,
+class DateDataProvider : NSObject, MonthCollectionViewControllerDataSource,
 			MonthCollectionViewControllerDelegate,
 			MonthsListViewControllerDataSource, MonthsListViewControllerDelegate {
 

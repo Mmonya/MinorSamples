@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Protocols declaretion
 protocol MonthsListViewControllerDataSource : AnyObject {
 	func selectedMonthIndex() -> Int
 }
@@ -18,16 +19,16 @@ protocol MonthsListViewControllerDelegate : AnyObject {
 
 class MonthsListViewController : UITableViewController {
 	
+	// MARK: - Properties
+	
 	weak var delegate : MonthsListViewControllerDelegate?
 	weak var dataSource : MonthsListViewControllerDataSource?
 	
+	//  MARK: - Internal methods
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		updateSelectedItem()
-	}
-	
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		delegate?.monthsListDidSelectMonthAt(indexPath)
 	}
 	
 	func updateSelectedItem() {
@@ -35,6 +36,12 @@ class MonthsListViewController : UITableViewController {
 			let indexPath = IndexPath(row: selectedMonthIndex, section: 0)
 			tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition(rawValue: 0)!)
 		}
+	}
+	
+	// MARK: - TableViews methods
+
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		delegate?.monthsListDidSelectMonthAt(indexPath)
 	}
 	
 }

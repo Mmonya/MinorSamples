@@ -8,6 +8,10 @@
 
 import UIKit
 
+// Constants
+private let kWorkingDayCellKey = "WorkingDayViewCell"
+
+// Protocols declaretion
 protocol MonthCollectionViewControllerDataSource : AnyObject {
 
 	func numberOfVisibleWeeks() -> Int
@@ -24,9 +28,6 @@ protocol MonthCollectionViewControllerDelegate : AnyObject {
 	
 }
 
-// Constants
-private let kWorkingDayCellKey = "WorkingDayViewCell"
-
 class MonthCollectionViewController : UICollectionViewController {
 	
 	// MARK: - Properties
@@ -39,8 +40,9 @@ class MonthCollectionViewController : UICollectionViewController {
 		}
 	}
 	weak var delegate : MonthCollectionViewControllerDelegate?
-	var cellColors : [UIColor] = []
-	
+	private var cellColors : [UIColor] = []
+	private var shouldDeselectItem = false
+
 	// MARK: - Internal methods
 	deinit {
 		NotificationCenter.default.removeObserver(self,
@@ -69,7 +71,7 @@ class MonthCollectionViewController : UICollectionViewController {
 		return cellColors[index]
 	}
 	
-	func setup(viewCell: DayCollectionViewCell, forDay day: Day) {
+	func setup(_ viewCell: DayCollectionViewCell, for day: Day) {
 		viewCell.titleLabel.textColor = cellColorForDayType(day.dayType)
 		viewCell.titleLabel.text = day.title
 	}
@@ -83,10 +85,6 @@ class MonthCollectionViewController : UICollectionViewController {
 	}
 	
 	func monthDidChangeValue(_ notification: Notification) {
-		
-		
-//		print(notification)
-		
 		collectionView?.reloadData()
 		shouldDeselectItem = false
 		updateSelectedItem()
@@ -103,55 +101,30 @@ class MonthCollectionViewController : UICollectionViewController {
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kWorkingDayCellKey, for: indexPath) as! DayCollectionViewCell
+		let viewCell = collectionView.dequeueReusableCell(withReuseIdentifier: kWorkingDayCellKey, for: indexPath) as! DayCollectionViewCell
 		if let day = dataSource.dayAt(indexPath) {
-			setup(viewCell: cell, forDay: day)
+			setup(viewCell, for: day)
 		}
-		return cell
+		return viewCell
 	}
 
 	override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
 		let result = dataSource.shouldSelectDayAt(indexPath)
-		print("shouldHighlightItemAt (\(result)) = \(indexPath)")
 		return result
 	}
 	
-	override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-		print("didHighlightItemAt = \(indexPath)")
-	}
-	
-	override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-		print("didUnhighlightItemAt = \(indexPath)")
-	}
-	
-	private var shouldDeselectItem = false
-	
 	override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
 		let result = dataSource.shouldSelectDayAt(indexPath)
-		print("shouldSelectItemAt (\(result)) = \(indexPath)")
 		shouldDeselectItem = result
 		return result
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		shouldDeselectItem = false
-		print("didSelectItemAt = \(indexPath)")
-		print("-----------------------------------------")
-		
-		
-		// Send information
-		
 		delegate?.monthCollectionDidSelectDayAt(indexPath)
-		
-	}
-	
-	override func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-		print("shouldDeselectItemAt = \(indexPath)")
-		return true
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-		print("didDeselectItemAt = \(indexPath)")
 		if !shouldDeselectItem {
 			updateSelectedItem()
 		}

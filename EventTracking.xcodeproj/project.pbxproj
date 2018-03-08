@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		091DA3082047F891000013F3 /* MonthCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DA3072047F891000013F3 /* MonthCollectionViewFlowLayout.swift */; };
+		093C193A2051A2D500946F7C /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C19392051A2D500946F7C /* EventsListViewController.swift */; };
+		093C193C2051B3BA00946F7C /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C193B2051B3BA00946F7C /* EventItem.swift */; };
+		093C193E2051B47600946F7C /* EventDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C193D2051B47600946F7C /* EventDataProvider.swift */; };
 		09684E802046C17B00D2C6EF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09684E7F2046C17B00D2C6EF /* Day.swift */; };
 		098CA33320494B4C00E5D3F1 /* MonthsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098CA33220494B4C00E5D3F1 /* MonthsListViewController.swift */; };
 		09D384DD204442B900A4CF07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D384DC204442B900A4CF07 /* AppDelegate.swift */; };
@@ -20,7 +23,7 @@
 		09D384F7204442BA00A4CF07 /* EventTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D384F6204442BA00A4CF07 /* EventTrackingTests.swift */; };
 		09D38502204442BA00A4CF07 /* EventTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D38501204442BA00A4CF07 /* EventTrackingUITests.swift */; };
 		09D3851020444B3B00A4CF07 /* MonthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */; };
-		09D385122044582200A4CF07 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D385112044582200A4CF07 /* DataProvider.swift */; };
+		09D385122044582200A4CF07 /* DateDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D385112044582200A4CF07 /* DateDataProvider.swift */; };
 		09D385162044677500A4CF07 /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D385152044677500A4CF07 /* DayCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,9 @@
 /* Begin PBXFileReference section */
 		091DA3072047F891000013F3 /* MonthCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		0922579120517F5400BD00EC /* MasterViewControllerOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewControllerOld.swift; sourceTree = "<group>"; };
+		093C19392051A2D500946F7C /* EventsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
+		093C193B2051B3BA00946F7C /* EventItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
+		093C193D2051B47600946F7C /* EventDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDataProvider.swift; sourceTree = "<group>"; };
 		09684E7F2046C17B00D2C6EF /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		098CA33220494B4C00E5D3F1 /* MonthsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MonthsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		09D384D9204442B900A4CF07 /* EventTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +68,7 @@
 		09D38501204442BA00A4CF07 /* EventTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackingUITests.swift; sourceTree = "<group>"; };
 		09D38503204442BA00A4CF07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewController.swift; sourceTree = "<group>"; };
-		09D385112044582200A4CF07 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataProvider.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		09D385112044582200A4CF07 /* DateDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DateDataProvider.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		09D385152044677500A4CF07 /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,7 +172,9 @@
 			isa = PBXGroup;
 			children = (
 				09684E7F2046C17B00D2C6EF /* Day.swift */,
-				09D385112044582200A4CF07 /* DataProvider.swift */,
+				09D385112044582200A4CF07 /* DateDataProvider.swift */,
+				093C193B2051B3BA00946F7C /* EventItem.swift */,
+				093C193D2051B47600946F7C /* EventDataProvider.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -179,6 +187,7 @@
 				09D384E3204442B900A4CF07 /* DetailViewController.swift */,
 				09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */,
 				098CA33220494B4C00E5D3F1 /* MonthsListViewController.swift */,
+				093C19392051A2D500946F7C /* EventsListViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -327,14 +336,17 @@
 			files = (
 				09D384DD204442B900A4CF07 /* AppDelegate.swift in Sources */,
 				098CA33320494B4C00E5D3F1 /* MonthsListViewController.swift in Sources */,
-				09D385122044582200A4CF07 /* DataProvider.swift in Sources */,
+				09D385122044582200A4CF07 /* DateDataProvider.swift in Sources */,
 				091DA3082047F891000013F3 /* MonthCollectionViewFlowLayout.swift in Sources */,
 				09684E802046C17B00D2C6EF /* Day.swift in Sources */,
 				09D384E0204442B900A4CF07 /* EventTracking.xcdatamodeld in Sources */,
+				093C193A2051A2D500946F7C /* EventsListViewController.swift in Sources */,
 				09D384E2204442B900A4CF07 /* MasterViewController.swift in Sources */,
 				09D385162044677500A4CF07 /* DayCollectionViewCell.swift in Sources */,
 				09D384E4204442B900A4CF07 /* DetailViewController.swift in Sources */,
+				093C193E2051B47600946F7C /* EventDataProvider.swift in Sources */,
 				09D3851020444B3B00A4CF07 /* MonthCollectionViewController.swift in Sources */,
+				093C193C2051B3BA00946F7C /* EventItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

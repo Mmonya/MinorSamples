@@ -9,9 +9,13 @@
 import UIKit
 import CoreData
 
+// Constants
+private let kMonthPreviewSegueIdentifier = "MonthPreview"
+private let kMonthListSegueIdentifier = "MonthList"
+
 class MasterViewController: UIViewController {
 
-	var dataProvider = DataProvider.init(date: Date())
+	var dateDataProvider = DateDataProvider.init(date: Date())
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -36,16 +40,16 @@ class MasterViewController: UIViewController {
 //		}
 		
 		
-		if segue.identifier == "MonthPreview" {
+		if segue.identifier == kMonthPreviewSegueIdentifier {
 			let controller = segue.destination as! MonthCollectionViewController
-			controller.dataSource = dataProvider
-			controller.delegate = dataProvider
-			dataProvider.reloadData()
+			controller.dataSource = dateDataProvider
+			controller.delegate = dateDataProvider
+			dateDataProvider.reloadData()
 		}
-		if segue.identifier == "MonthList" {
+		if segue.identifier == kMonthListSegueIdentifier {
 			let controller = segue.destination as! MonthsListViewController
-			controller.delegate = dataProvider
-			controller.dataSource = dataProvider
+			controller.delegate = dateDataProvider
+			controller.dataSource = dateDataProvider
 		}
 
 	}
