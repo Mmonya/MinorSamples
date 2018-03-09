@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Constants
+// Private constants
 private let kEventsListSegueIdentifier = "EventsList"
 
 class DetailViewController: UIViewController {
@@ -41,6 +41,8 @@ class DetailViewController: UIViewController {
 //		    configureView()
 //		}
 //	}
+	
+	// MARK: - Segues
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == kEventsListSegueIdentifier {

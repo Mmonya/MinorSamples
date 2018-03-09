@@ -8,7 +8,8 @@
 
 import UIKit
 
-// Constants
+// Private constants
+private let kAddNewEventSegueIdentifier = "AddNewEvent"
 private let kEventViewCellIdentifier = "EventViewCell"
 
 enum AuthorizationStatus : Int {
@@ -37,7 +38,9 @@ protocol EventsListViewControllerDelegate : AnyObject {
 	
 }
 
-class EventsListViewController: UITableViewController {
+class EventsListViewController: UITableViewController,
+			UIPopoverPresentationControllerDelegate,
+			CreateEventViewControllerDelegate {
 	
 	// MARK: - Properties
 	
@@ -72,7 +75,7 @@ class EventsListViewController: UITableViewController {
 	}
 	
 	func insertNewObject(_ sender: Any) {
-		
+		performSegue(withIdentifier: kAddNewEventSegueIdentifier, sender: self)
 	}
 	
 	func eventDataDidChange(_ notification: Notification) {
@@ -147,6 +150,33 @@ class EventsListViewController: UITableViewController {
 			setup(viewCell, for: eventItem)
 		}
 		return viewCell
+	}
+
+	// MARK: - CreateEventViewControllerDelegate methods
+	
+	func dissmissCreateEventViewController() {
+		navigationController?.dismiss(animated: true, completion: nil)
+	}
+
+	// MARK: - UIPopoverPresentationControllerDelegate methods
+	
+	func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+		return .none
+	}
+	
+	// MARK: - Segues
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == kAddNewEventSegueIdentifier {
+			let navigationController = segue.destination as? UINavigationController
+			let viewController = navigationController?.topViewController
+						as? CreateEventViewController
+			viewController?.delegate = self
+			if let popover = navigationController?.popoverPresentationController {
+				popover.delegate = self
+				popover.barButtonItem = parent?.navigationItem.rightBarButtonItem
+			}
+		}
 	}
 	
 }

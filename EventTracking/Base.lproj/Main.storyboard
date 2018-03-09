@@ -149,10 +149,56 @@
                             <outlet property="delegate" destination="Erl-lt-qRT" id="yHr-Tu-6qj"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="MDL-0r-UeZ" kind="popoverPresentation" identifier="AddNewEvent" popoverAnchorView="ct9-5s-dsE" id="tGx-sW-zei">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ymY-Ml-GWL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1564" y="112"/>
+            <point key="canvasLocation" x="1542" y="112"/>
+        </scene>
+        <!--New Event-->
+        <scene sceneID="Mzr-Fu-PsO">
+            <objects>
+                <viewController id="dU5-oc-ilG" customClass="CreateEventViewController" customModule="EventTracking" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v8F-1p-FUD"/>
+                        <viewControllerLayoutGuide type="bottom" id="8ij-u3-CJq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xFH-4P-Pyt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Event" id="j8q-gs-FfL">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="FJw-T7-1rO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ffA-D2-pt0">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="dU5-oc-ilG" eventType="touchUpInside" id="JsC-9U-Kjx"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="2iv-dz-y73">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gza-ls-IPQ">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="dU5-oc-ilG" eventType="touchUpInside" id="ccn-Md-cKn"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C98-Bd-B1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3476.811594202899" y="-130.43478260869566"/>
         </scene>
         <!--Month Collection View Controller-->
         <scene sceneID="7ra-Ba-lpX">
@@ -470,6 +516,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-38" y="86"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JT9-o7-c2k">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MDL-0r-UeZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="K2v-Zm-S77">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dU5-oc-ilG" kind="relationship" relationship="rootViewController" id="IY0-q7-scT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9n7-nw-zAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2569.5652173913045" y="-130.43478260869566"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

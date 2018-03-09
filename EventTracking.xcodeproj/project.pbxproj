@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		091DA3082047F891000013F3 /* MonthCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DA3072047F891000013F3 /* MonthCollectionViewFlowLayout.swift */; };
+		091F14AC205315B70025D68D /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091F14AB205315B70025D68D /* CreateEventViewController.swift */; };
 		093C193A2051A2D500946F7C /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C19392051A2D500946F7C /* EventsListViewController.swift */; };
 		093C193C2051B3BA00946F7C /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C193B2051B3BA00946F7C /* EventItem.swift */; };
 		093C193E2051B47600946F7C /* EventDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C193D2051B47600946F7C /* EventDataProvider.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		091DA3072047F891000013F3 /* MonthCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		091F14AB205315B70025D68D /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		0922579120517F5400BD00EC /* MasterViewControllerOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewControllerOld.swift; sourceTree = "<group>"; };
 		093C19392051A2D500946F7C /* EventsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
 		093C193B2051B3BA00946F7C /* EventItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				09D3850F20444B3B00A4CF07 /* MonthCollectionViewController.swift */,
 				098CA33220494B4C00E5D3F1 /* MonthsListViewController.swift */,
 				093C19392051A2D500946F7C /* EventsListViewController.swift */,
+				091F14AB205315B70025D68D /* CreateEventViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			files = (
 				09D384DD204442B900A4CF07 /* AppDelegate.swift in Sources */,
 				098CA33320494B4C00E5D3F1 /* MonthsListViewController.swift in Sources */,
+				091F14AC205315B70025D68D /* CreateEventViewController.swift in Sources */,
 				09A054712052EC0E0089C595 /* DateExtension.swift in Sources */,
 				09D385122044582200A4CF07 /* DateDataProvider.swift in Sources */,
 				091DA3082047F891000013F3 /* MonthCollectionViewFlowLayout.swift in Sources */,

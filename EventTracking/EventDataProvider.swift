@@ -21,7 +21,7 @@ class EventDataProvider: NSObject, EventsListViewControllerDataSource,
 	private var currentAuthorizationStatus = AuthorizationStatus.undefined
 	private var eventStore : EKEventStore
 	private var selectedCalendar : EKCalendar!
-	private var events = [EKEvent]()
+	private var events = [EventItem]()
 	private var fetchEventsQueue : DispatchQueue
 
 	// MARK: - Internal methods
@@ -59,6 +59,14 @@ class EventDataProvider: NSObject, EventsListViewControllerDataSource,
 					object: self)
 	}
 	
+	func updateDataStructure(matching events: [EKEvent]) {
+		for event in events {
+			let item = EventItem(title: event.title, subtitle: event.notes ?? "")
+			item.identifier = event.eventIdentifier
+			self.events.append(item)
+		}
+	}
+	
 	// MARK: - EventsListViewControllerDataSource methods
 	
 	func authorizationStatus() -> AuthorizationStatus {
@@ -87,7 +95,8 @@ class EventDataProvider: NSObject, EventsListViewControllerDataSource,
 				let predicate = self.eventStore.predicateForEvents(withStart:
 							currentDate.startOfDay, end: currentDate.endOfDay,
 							calendars: [self.selectedCalendar])
-				self.events = self.eventStore.events(matching: predicate)
+				let events = self.eventStore.events(matching: predicate)
+				self.updateDataStructure(matching: events)
 				
 				DispatchQueue.main.async {
 					completion(true, nil)
@@ -101,8 +110,7 @@ class EventDataProvider: NSObject, EventsListViewControllerDataSource,
 	}
 	
 	func eventItemAt(_ indexPath: IndexPath) -> EventItem? {
-		let event = events[indexPath.row]
-		return EventItem(title: event.title, subtitle: event.notes ?? "")
+		return events[indexPath.row]
 	}
 	
 	// MARK: - EventsListViewControllerDelegate methods
