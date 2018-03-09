@@ -13,4 +13,9 @@ class EventItem {
 	var title = ""
 	var subtitle = ""
 	
+	init(title: String, subtitle: String) {
+		self.title = title
+		self.subtitle = subtitle
+	}
+	
 }

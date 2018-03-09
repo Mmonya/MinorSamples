@@ -9,10 +9,13 @@
 import Foundation
 
 // Global constants
-let kMonthDidChangeNotificationName = Notification.Name(rawValue: "kMonthDidChangeNotificationName")
+
+let kMonthDidChangeNotificationName = Notification.Name(rawValue:
+			"kMonthDidChangeNotificationName")
 let kOldDateUserInfoKey = "kOldDateUserInfoKey"
 
 // Private constants
+
 private let kDaysPerWeek = 7
 private let kNumberOfVisibleWeeks = 7 // 6 - rows with numbers + 1 - with titles
 private let kExpectedNumberOfItems = kDaysPerWeek * kNumberOfVisibleWeeks
@@ -21,16 +24,17 @@ class DateDataProvider : NSObject, MonthCollectionViewControllerDataSource,
 			MonthCollectionViewControllerDelegate,
 			MonthsListViewControllerDataSource, MonthsListViewControllerDelegate {
 
+	// MARK: - Properties
+	
 	private var currentDate : Date
 	private var dayValues = [Day]()
 	private var selectedDayIndex = -1
 	
-	// MARK: - Properties
+	// MARK: - Internal methods
+	
 	init(date currentDate: Date) {
 		self.currentDate = currentDate
 	}
-	
-	// MARK: - Internal methods
 	
 	func reloadData() {
 		dayValues = []

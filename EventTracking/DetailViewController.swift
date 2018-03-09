@@ -13,6 +13,8 @@ private let kEventsListSegueIdentifier = "EventsList"
 
 class DetailViewController: UIViewController {
 
+	var eventDataProvider : EventDataProvider?
+	
 //	func configureView() {
 //		// Update the user interface for the detail item.
 //		if let detail = detailItem {
@@ -42,7 +44,8 @@ class DetailViewController: UIViewController {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == kEventsListSegueIdentifier {
-			let controller = segue.destination
+			let controller = segue.destination as! EventsListViewController
+			controller.dataSource = eventDataProvider
 			addChildViewController(controller)
 		}
 	}

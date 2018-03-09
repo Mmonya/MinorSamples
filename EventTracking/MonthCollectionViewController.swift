@@ -33,6 +33,10 @@ class MonthCollectionViewController : UICollectionViewController {
 	// MARK: - Properties
 
 	weak var dataSource : MonthCollectionViewControllerDataSource! {
+		willSet {
+			NotificationCenter.default.removeObserver(self,
+						name: kMonthDidChangeNotificationName, object: dataSource)
+		}
 		didSet {
 			NotificationCenter.default.addObserver(self, selector:
 						#selector(monthDidChangeValue), name:

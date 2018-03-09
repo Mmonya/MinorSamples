@@ -12,10 +12,12 @@ import CoreData
 // Constants
 private let kMonthPreviewSegueIdentifier = "MonthPreview"
 private let kMonthListSegueIdentifier = "MonthList"
+private let kShowDetailSegueIdentifier = "ShowDetail"
 
 class MasterViewController: UIViewController {
 
 	var dateDataProvider = DateDataProvider.init(date: Date())
+	var eventDataProvider = EventDataProvider()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,12 +26,24 @@ class MasterViewController: UIViewController {
 //
 //		let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
 //		navigationItem.rightBarButtonItem = addButton
-	}
 
+		performSegue(withIdentifier: kShowDetailSegueIdentifier, sender: self)
+
+	}
+	
 	// MARK: - Segues
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//		if segue.identifier == "showDetail" {
+		if segue.identifier == kShowDetailSegueIdentifier {
+			let controller = (segue.destination as? UINavigationController)?.topViewController
+						as? DetailViewController
+			controller?.eventDataProvider = eventDataProvider
+			
+			controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+			controller?.navigationItem.leftItemsSupplementBackButton = true
+
+			
+			
 //		    if let indexPath = tableView.indexPathForSelectedRow {
 //		    let object = fetchedResultsController.object(at: indexPath)
 //		        let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
@@ -37,7 +51,7 @@ class MasterViewController: UIViewController {
 //		        controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
 //		        controller.navigationItem.leftItemsSupplementBackButton = true
 //		    }
-//		}
+		}
 		
 		
 		if segue.identifier == kMonthPreviewSegueIdentifier {

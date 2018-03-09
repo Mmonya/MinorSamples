@@ -13,6 +13,7 @@
 		093C193E2051B47600946F7C /* EventDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C193D2051B47600946F7C /* EventDataProvider.swift */; };
 		09684E802046C17B00D2C6EF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09684E7F2046C17B00D2C6EF /* Day.swift */; };
 		098CA33320494B4C00E5D3F1 /* MonthsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098CA33220494B4C00E5D3F1 /* MonthsListViewController.swift */; };
+		09A054712052EC0E0089C595 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A054702052EC0E0089C595 /* DateExtension.swift */; };
 		09D384DD204442B900A4CF07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D384DC204442B900A4CF07 /* AppDelegate.swift */; };
 		09D384E0204442B900A4CF07 /* EventTracking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09D384DE204442B900A4CF07 /* EventTracking.xcdatamodeld */; };
 		09D384E2204442B900A4CF07 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D384E1204442B900A4CF07 /* MasterViewController.swift */; };
@@ -52,6 +53,7 @@
 		093C193D2051B47600946F7C /* EventDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDataProvider.swift; sourceTree = "<group>"; };
 		09684E7F2046C17B00D2C6EF /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		098CA33220494B4C00E5D3F1 /* MonthsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MonthsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		09A054702052EC0E0089C595 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		09D384D9204442B900A4CF07 /* EventTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D384DC204442B900A4CF07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09D384DF204442B900A4CF07 /* EventTracking.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventTracking.xcdatamodel; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				09D384DC204442B900A4CF07 /* AppDelegate.swift */,
 				091DA3072047F891000013F3 /* MonthCollectionViewFlowLayout.swift */,
+				09A054702052EC0E0089C595 /* DateExtension.swift */,
 			);
 			name = Another;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 			files = (
 				09D384DD204442B900A4CF07 /* AppDelegate.swift in Sources */,
 				098CA33320494B4C00E5D3F1 /* MonthsListViewController.swift in Sources */,
+				09A054712052EC0E0089C595 /* DateExtension.swift in Sources */,
 				09D385122044582200A4CF07 /* DateDataProvider.swift in Sources */,
 				091DA3082047F891000013F3 /* MonthCollectionViewFlowLayout.swift in Sources */,
 				09684E802046C17B00D2C6EF /* Day.swift in Sources */,

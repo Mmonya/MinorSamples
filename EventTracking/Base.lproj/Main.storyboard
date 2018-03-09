@@ -68,6 +68,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Master" id="xEZ-vy-e1g"/>
+                    <connections>
+                        <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="ShowDetail" id="syG-v8-6H3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VaQ-md-lmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -155,7 +158,7 @@
         <scene sceneID="7ra-Ba-lpX">
             <objects>
                 <collectionViewController id="gb2-sm-Weh" customClass="MonthCollectionViewController" customModule="EventTracking" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="hJJ-8X-REk">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hJJ-8X-REk">
                         <rect key="frame" x="0.0" y="0.0" width="374" height="175"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -469,4 +472,7 @@
             <point key="canvasLocation" x="-38" y="86"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="syG-v8-6H3"/>
+    </inferredMetricsTieBreakers>
 </document>
