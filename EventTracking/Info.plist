@@ -53,6 +53,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCalendarsUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses events</string>
+	<string>$(PRODUCT_NAME) reading and writing events</string>
 </dict>
 </plist>

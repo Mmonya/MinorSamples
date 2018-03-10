@@ -12,22 +12,18 @@ import UIKit
 private let kAddNewEventSegueIdentifier = "AddNewEvent"
 private let kEventViewCellIdentifier = "EventViewCell"
 
-enum AuthorizationStatus : Int {
+enum ReloadDataStatus : Int {
 	
-	case notDetermined
-	case restricted
-	case denied
-	case authorized
+	case success
+	case accessRestricted
 	case undefined
+	
 }
 
 // Protocols declaretion
 protocol EventsListViewControllerDataSource : AnyObject {
 	
-	func authorizationStatus() -> AuthorizationStatus
-	func requestEventAccess(completion: @escaping (Bool, Error?) -> ())
-	
-	func reloadData(completion: @escaping (Bool, Error?) -> ())
+	func reloadData(completion: @escaping (ReloadDataStatus) -> ())
 	
 	func numberOfEvents() -> Int
 	func eventItemAt(_ indexPath: IndexPath) -> EventItem?
@@ -71,7 +67,7 @@ class EventsListViewController: UITableViewController,
 			parent.title = NSLocalizedString("All Events", comment: "")
 		}
 		
-		performAuthorization()
+		reloadData()
 	}
 	
 	func insertNewObject(_ sender: Any) {
@@ -84,29 +80,16 @@ class EventsListViewController: UITableViewController,
 
 	// MARK: - Private methods
 
-	private func performAuthorization() {
-		let status = dataSource?.authorizationStatus() ?? .undefined
-		switch status {
-		case .notDetermined:
-			dataSource.requestEventAccess { (flag, error) in
-				if error == nil && flag {
-					self.reloadData()
-				}
-			}
-		case .denied, .restricted:
-			showAlertAboutDeniedAccessToEvents()
-		case .authorized:
-			reloadData()
-		default:
-			break
-		}
-	}
-	
 	private func reloadData() {
-		self.dataSource.reloadData(completion: { (flag, error) in
-			if error == nil && flag {
-				self.tableView.reloadData()
+		self.dataSource.reloadData(completion: { (status) in
+			switch status {
+			case .accessRestricted:
+				self.showAlertAboutDeniedAccessToEvents()
+			default:
+				break
 			}
+			
+			self.tableView.reloadData()
 		})
 	}
 	
