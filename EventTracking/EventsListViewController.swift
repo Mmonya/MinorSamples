@@ -10,6 +10,7 @@ import UIKit
 
 // Private constants
 private let kAddNewEventSegueIdentifier = "AddNewEvent"
+private let kChangeEventSegueIdentifier = "ChangeEvent"
 private let kEventViewCellIdentifier = "EventViewCell"
 
 enum ReloadDataStatus : Int {
@@ -36,7 +37,8 @@ protocol EventsListViewControllerDelegate : AnyObject {
 
 class EventsListViewController: UITableViewController,
 			UIPopoverPresentationControllerDelegate,
-			CreateEventViewControllerDelegate {
+			CreateEventViewControllerDelegate,
+			ChangeEventViewControllerDelegate {
 	
 	// MARK: - Properties
 	
@@ -135,12 +137,29 @@ class EventsListViewController: UITableViewController,
 		return viewCell
 	}
 
+	// MARK: - BodyEventViewControllerDelegate methods
+
+	func dissmissEventViewController() {
+		navigationController?.dismiss(animated: true, completion: nil)
+	}
+	
 	// MARK: - CreateEventViewControllerDelegate methods
 	
 	func dissmissCreateEventViewController() {
 		navigationController?.dismiss(animated: true, completion: nil)
 	}
 
+	func addNewEvent(title: String, subtitle: String) {
+		navigationController?.dismiss(animated: true, completion: nil)
+		
+		
+		
+	}
+
+	// MARK: - ChangeEventViewControllerDelegate methods
+	
+	
+	
 	// MARK: - UIPopoverPresentationControllerDelegate methods
 	
 	func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -159,6 +178,11 @@ class EventsListViewController: UITableViewController,
 				popover.delegate = self
 				popover.barButtonItem = parent?.navigationItem.rightBarButtonItem
 			}
+		}
+		if segue.identifier == kChangeEventSegueIdentifier {
+			let viewController = (segue.destination as? UINavigationController)?.topViewController
+						as? ChangeEventViewController
+			viewController?.delegate = self
 		}
 	}
 	

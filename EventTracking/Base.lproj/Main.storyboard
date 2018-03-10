@@ -142,6 +142,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="2WN-eV-CWG" kind="showDetail" identifier="ChangeEvent" id="hId-BK-5VM"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -157,7 +160,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ymY-Ml-GWL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1542" y="112"/>
+            <point key="canvasLocation" x="2299" y="92"/>
         </scene>
         <!--New Event-->
         <scene sceneID="Mzr-Fu-PsO">
@@ -170,7 +173,38 @@
                     <view key="view" contentMode="scaleToFill" id="xFH-4P-Pyt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NKh-Hk-H4A">
+                                <rect key="frame" x="20" y="72" width="374" height="656"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fP8-kC-xm8">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="titleDidChange:" destination="dU5-oc-ilG" eventType="editingChanged" id="oNh-ao-fIV"/>
+                                        </connections>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Detail text" translatesAutoresizingMaskIntoConstraints="NO" id="FFe-pX-dJE">
+                                        <rect key="frame" x="0.0" y="38" width="374" height="618"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="dU5-oc-ilG" id="8Hk-7k-iPy"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NKh-Hk-H4A" firstAttribute="top" secondItem="v8F-1p-FUD" secondAttribute="bottom" constant="8" symbolic="YES" id="9cM-d3-GSG"/>
+                            <constraint firstItem="NKh-Hk-H4A" firstAttribute="leading" secondItem="xFH-4P-Pyt" secondAttribute="leadingMargin" id="Ah1-2d-rxd"/>
+                            <constraint firstItem="8ij-u3-CJq" firstAttribute="top" secondItem="NKh-Hk-H4A" secondAttribute="bottom" constant="8" symbolic="YES" id="RXp-7m-LtO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NKh-Hk-H4A" secondAttribute="trailing" id="Vc9-ut-Zc1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Event" id="j8q-gs-FfL">
                         <barButtonItem key="leftBarButtonItem" style="done" id="FJw-T7-1rO">
@@ -195,10 +229,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="detailTextView" destination="FFe-pX-dJE" id="mr7-hB-1ZH"/>
+                        <outlet property="titleTextField" destination="fP8-kC-xm8" id="nfh-A5-sus"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C98-Bd-B1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3476.811594202899" y="-130.43478260869566"/>
+            <point key="canvasLocation" x="4277" y="-298"/>
         </scene>
         <!--Month Collection View Controller-->
         <scene sceneID="7ra-Ba-lpX">
@@ -533,7 +571,101 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9n7-nw-zAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2569.5652173913045" y="-130.43478260869566"/>
+            <point key="canvasLocation" x="3370" y="-298"/>
+        </scene>
+        <!--Change Event-->
+        <scene sceneID="DNA-9P-QbH">
+            <objects>
+                <viewController id="osk-xD-Y08" customClass="ChangeEventViewController" customModule="EventTracking" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QVY-qS-7Xx"/>
+                        <viewControllerLayoutGuide type="bottom" id="m27-rg-NCa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xtv-gu-mml">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vyc-Pt-puc">
+                                <rect key="frame" x="20" y="72" width="374" height="656"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AG4-Kb-Yzo">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="titleDidChange:" destination="osk-xD-Y08" eventType="editingChanged" id="001-Tc-hbg"/>
+                                        </connections>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Detail text" translatesAutoresizingMaskIntoConstraints="NO" id="yA6-IP-Oul">
+                                        <rect key="frame" x="0.0" y="38" width="374" height="618"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="osk-xD-Y08" id="w0m-SQ-I1g"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vyc-Pt-puc" firstAttribute="top" secondItem="QVY-qS-7Xx" secondAttribute="bottom" constant="8" symbolic="YES" id="MgK-Pn-vZH"/>
+                            <constraint firstItem="m27-rg-NCa" firstAttribute="top" secondItem="vyc-Pt-puc" secondAttribute="bottom" constant="8" symbolic="YES" id="P6M-Iz-oAu"/>
+                            <constraint firstItem="vyc-Pt-puc" firstAttribute="leading" secondItem="Xtv-gu-mml" secondAttribute="leadingMargin" id="p1I-iP-2yB"/>
+                            <constraint firstItem="vyc-Pt-puc" firstAttribute="trailing" secondItem="Xtv-gu-mml" secondAttribute="trailingMargin" id="vHq-VT-n87"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Change Event" id="IGZ-Jb-ndP">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="AQx-Ze-uTY">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x7t-ft-yLT">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="osk-xD-Y08" eventType="touchUpInside" id="IJG-vT-GcZ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="KVD-A9-Iy5">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FpM-wn-K9E">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Apply"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="osk-xD-Y08" eventType="touchUpInside" id="cUe-un-czn"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="detailTextView" destination="yA6-IP-Oul" id="wjV-Ev-4Pk"/>
+                        <outlet property="titleTextField" destination="AG4-Kb-Yzo" id="WKL-uB-6Wb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MqQ-fy-WMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4277" y="410"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="abs-FN-upe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2WN-eV-CWG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v52-fF-k86">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="osk-xD-Y08" kind="relationship" relationship="rootViewController" id="jCy-1c-AhF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M7O-QA-3Db" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3370" y="410"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
