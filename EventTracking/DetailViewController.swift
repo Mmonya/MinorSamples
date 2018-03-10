@@ -44,11 +44,14 @@ class DetailViewController: UIViewController {
 	
 	// MARK: - Segues
 	
+	deinit {
+		print(String.init(format: "deinit of DetailViewController %p", self))
+	}
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == kEventsListSegueIdentifier {
 			let controller = segue.destination as! EventsListViewController
 			controller.dataSource = eventDataProvider
-			addChildViewController(controller)
 		}
 	}
 	

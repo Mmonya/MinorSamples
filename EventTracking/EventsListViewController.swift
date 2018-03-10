@@ -57,18 +57,22 @@ class EventsListViewController: UITableViewController,
 	// MARK: - Internal methods
 
 	deinit {
+		print(String.init(format: "deinit of EventsListViewController %p", self))
+
+		
 		NotificationCenter.default.removeObserver(self,
 					name: kEventDataDidChangeNotificationName, object: dataSource)
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		if let parent = self.parent {
-			let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-			parent.navigationItem.rightBarButtonItem = addButton
-			parent.title = NSLocalizedString("All Events", comment: "")
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if let navigationItem = parent?.navigationItem {
+			let addButton = UIBarButtonItem(barButtonSystemItem: .add,
+						target: self, action: #selector(insertNewObject(_:)))
+			navigationItem.rightBarButtonItem = addButton
+			navigationItem.title = NSLocalizedString("All Events", comment: "")
 		}
-		
+
 		reloadData()
 	}
 	
@@ -137,12 +141,6 @@ class EventsListViewController: UITableViewController,
 		return viewCell
 	}
 
-	// MARK: - BodyEventViewControllerDelegate methods
-
-	func dissmissEventViewController() {
-		navigationController?.dismiss(animated: true, completion: nil)
-	}
-	
 	// MARK: - CreateEventViewControllerDelegate methods
 	
 	func dissmissCreateEventViewController() {
@@ -170,19 +168,21 @@ class EventsListViewController: UITableViewController,
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == kAddNewEventSegueIdentifier {
-			let navigationController = segue.destination as? UINavigationController
-			let viewController = navigationController?.topViewController
+			let popoverNavigationController = segue.destination as? UINavigationController
+			let viewController = popoverNavigationController?.topViewController
 						as? CreateEventViewController
 			viewController?.delegate = self
-			if let popover = navigationController?.popoverPresentationController {
+			if let popover = popoverNavigationController?.popoverPresentationController {
 				popover.delegate = self
 				popover.barButtonItem = parent?.navigationItem.rightBarButtonItem
 			}
 		}
 		if segue.identifier == kChangeEventSegueIdentifier {
-			let viewController = (segue.destination as? UINavigationController)?.topViewController
-						as? ChangeEventViewController
+			let viewController = segue.destination as? ChangeEventViewController
 			viewController?.delegate = self
+			if let indexPath = tableView.indexPathForSelectedRow {
+				viewController?.eventItem = dataSource.eventItemAt(indexPath)
+			}
 		}
 	}
 	

@@ -27,7 +27,22 @@ class MasterViewController: UIViewController {
 //		let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
 //		navigationItem.rightBarButtonItem = addButton
 
-		performSegue(withIdentifier: kShowDetailSegueIdentifier, sender: self)
+		
+		
+		if let split = splitViewController {
+			let controllers = split.viewControllers
+			let controller = (controllers[controllers.count-1] as?
+						UINavigationController)?.topViewController
+						as? DetailViewController
+	
+			controller?.eventDataProvider = eventDataProvider
+			controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+			controller?.navigationItem.leftItemsSupplementBackButton = true
+		}
+
+		
+		
+//		performSegue(withIdentifier: kShowDetailSegueIdentifier, sender: self)
 
 	}
 	
@@ -37,8 +52,8 @@ class MasterViewController: UIViewController {
 		if segue.identifier == kShowDetailSegueIdentifier {
 			let controller = (segue.destination as? UINavigationController)?.topViewController
 						as? DetailViewController
-			controller?.eventDataProvider = eventDataProvider
 			
+			controller?.eventDataProvider = eventDataProvider
 			controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
 			controller?.navigationItem.leftItemsSupplementBackButton = true
 
