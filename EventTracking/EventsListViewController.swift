@@ -83,7 +83,7 @@ class EventsListViewController: UITableViewController,
 	// MARK: - Private methods
 
 	private func reloadData() {
-		self.dataSource.reloadData(completion: { (status) in
+		self.dataSource?.reloadData(completion: { (status) in
 			switch status {
 			case .accessRestricted:
 				self.showAlertAboutDeniedAccessToEvents()
